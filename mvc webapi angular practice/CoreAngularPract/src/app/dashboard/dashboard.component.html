@@ -1,0 +1,126 @@
+<div class="header-part">
+    <h2>Product List</h2>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal">Add Product</button>
+</div>
+
+
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">Product ID</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Product Description</th>
+            <th scope="col">Product Price</th>
+            <th scope="col"></th>
+        </tr>
+      </thead>
+
+    <tbody>
+        <tr *ngFor="let product of prodDetails">
+            <th scope="row">{{ product.productID }}</th>
+            <td>{{ product.productName }}</td>
+            <td>{{ product.productDescription }}</td>
+            <td>{{ product.productPrice }}</td>
+            <td>
+                <div class="buttons">
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#editModal" (click)="getIdforUpdate(product.productID)">Edit</button>
+                    <button class="btn btn-danger" (click)="deleteProduct(product.productID)">Delete</button>
+                </div>
+            </td>
+        </tr>
+    </tbody>
+      
+</table>
+
+
+<!-- FormGroup and Modal code for adding product -->
+
+<form [formGroup]="productForm" (ngSubmit)="addProduct()">
+    
+    <!-- Add Modal -->
+    <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Product Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Product Name</label>
+                        <input type="text" class="form-control" formControlName="ProductName">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                        <textarea class="form-control" rows="3" formControlName="ProductDescription"></textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput2" class="form-label">Product Price</label>
+                        <input type="number" class="form-control" formControlName="ProductPrice">
+                    </div>
+                </div>
+                
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Add</button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+</form>
+    
+    
+<!-- FormGroup and Modal code for Updating product -->
+    
+<form [formGroup]="productForm" (ngSubmit)="updateProduct(prodId)">
+
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+    
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Update Product Details</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">Edit Product Name</label>
+                        <input type="text" class="form-control" formControlName="ProductName">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">Edit Description</label>
+                        <textarea class="form-control" rows="3" formControlName="ProductDescription"></textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput2" class="form-label">Edit Product Price</label>
+                        <input type="number" class="form-control" formControlName="ProductPrice">
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</form>
+
+
+
+<!-- Toast -->
+<div *ngIf="status" class="toast">
+    {{ status }}
+</div>

@@ -1,0 +1,17 @@
+<div class="login_form"> 
+    <form [formGroup]="signinForm" (ngSubmit)="signinUser()">
+        <h3>Log In</h3>
+        
+        <div class="form-floating mb-3">
+            <input type="text" id="Username" formControlName="Username" placeholder="Enter Your Username" class="form-control">
+            <label for="floatingInput">Enter Your Username</label>
+        </div>
+    
+        <div class="form-floating mb-3">
+            <input type="password" id="Password" formControlName="Password" placeholder="Enter Your Password" class="form-control">
+            <label for="floatingInput">Enter Your Password</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Sign In</button>
+    </form>
+</div>

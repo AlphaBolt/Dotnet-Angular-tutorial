@@ -1,0 +1,33 @@
+<!-- <nav>
+  <ul>
+    <li><a routerLink="/Signup">Sign Up</a></li>
+    <li><a routerLink="/Signin">Sign In</a></li>
+    
+  </ul>
+</nav> -->
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="/">Home</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a routerLink="/Signup" class="nav-link" *ngIf="!User">Signup</a>
+        <a routerLink="/Signin" class="nav-link" *ngIf="!User">Login</a>
+        <a id="logout" class="nav-link" *ngIf="User" (click)="logout()" >Logout</a>
+      </div>
+      <span *ngIf="User">
+        <h3>Hi, {{User}}</h3>
+      </span>
+    </div>
+  </div>
+</nav>
+
+
+<!-- The routed views render in the <router-outlet>-->
+<router-outlet></router-outlet>
